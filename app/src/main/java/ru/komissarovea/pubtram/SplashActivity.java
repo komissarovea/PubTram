@@ -5,6 +5,11 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
+import java.util.ArrayList;
+
+import ru.komissarovea.pubtram.data.Stop;
+import ru.komissarovea.pubtram.data.StopsHelper;
+
 public class SplashActivity extends Activity {
 
     @Override
@@ -26,10 +31,11 @@ public class SplashActivity extends Activity {
         protected Void doInBackground(Void... params) {
 
             try {
-                Thread.sleep(3000);
+                //Thread.sleep(3000);
                 //DatabaseHelper dbHelper = new DatabaseHelper(SplashActivity.this);
                 //ArrayList<Stop> stops = dbHelper.getAllStops();
-                //StopsHelper.setActualStops(stops);
+                ArrayList<Stop> stops = StopsHelper.getDefaultStops(SplashActivity.this);
+                StopsHelper.setActualStops(stops);
             } catch (Exception e) {
                 e.printStackTrace();
             }
