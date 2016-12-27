@@ -31,7 +31,7 @@ public class StopsHelper {
             Resources res = context.getResources();
             InputStream inputStream = res.openRawResource(R.raw.stops);
             BufferedReader reader = new BufferedReader(new InputStreamReader(
-                    inputStream, "Cp1251"));
+                    inputStream, "UTF-8"));
             String line = reader.readLine();
             while (line != null) {
                 String[] parts = line.split(";");
