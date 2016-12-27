@@ -7,6 +7,7 @@ import android.os.Bundle;
 
 import java.util.ArrayList;
 
+import ru.komissarovea.pubtram.data.DatabaseHelper;
 import ru.komissarovea.pubtram.data.Stop;
 import ru.komissarovea.pubtram.data.StopsHelper;
 
@@ -32,9 +33,9 @@ public class SplashActivity extends Activity {
 
             try {
                 //Thread.sleep(3000);
-                //DatabaseHelper dbHelper = new DatabaseHelper(SplashActivity.this);
-                //ArrayList<Stop> stops = dbHelper.getAllStops();
-                ArrayList<Stop> stops = StopsHelper.getDefaultStops(SplashActivity.this);
+                DatabaseHelper dbHelper = new DatabaseHelper(SplashActivity.this);
+                ArrayList<Stop> stops = dbHelper.getAllStops();
+                //ArrayList<Stop> stops = StopsHelper.getDefaultStops(SplashActivity.this);
                 StopsHelper.setActualStops(stops);
             } catch (Exception e) {
                 e.printStackTrace();
