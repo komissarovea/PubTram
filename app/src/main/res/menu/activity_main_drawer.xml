@@ -3,17 +3,21 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_camera"
-            android:title="Import" />
+            android:id="@+id/nav_next_stops"
+            android:icon="@drawable/ic_menu_stop"
+            android:title="@string/next_stops" />
         <item
-            android:id="@+id/nav_gallery"
-            android:title="Gallery" />
+            android:id="@+id/nav_map"
+            android:icon="@drawable/ic_menu_map"
+            android:title="@string/map" />
         <item
-            android:id="@+id/nav_slideshow"
-            android:title="Slideshow" />
+            android:id="@+id/nav_transport"
+            android:icon="@drawable/ic_menu_transport"
+            android:title="@string/transport" />
         <item
             android:id="@+id/nav_manage"
-            android:title="Tools" />
+            android:icon="@drawable/ic_menu_manage"
+            android:title="@string/tools" />
     </group>
 
 </menu>
