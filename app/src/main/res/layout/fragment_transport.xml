@@ -1,12 +1,24 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="ru.komissarovea.pubtram.fragments.TransportFragment">
+    android:background="@drawable/gradient_background"
+    android:orientation="vertical" >
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/fr_transport" />
+        android:id="@+id/label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/fr_transport"
+        android:textColor="@color/blue"
+        android:textSize="25sp" />
 
-</FrameLayout>
+    <ListView
+        android:id="@+id/listView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:divider="@color/blue"
+        android:dividerHeight="1dp" >
+    </ListView>
+
+</LinearLayout>
