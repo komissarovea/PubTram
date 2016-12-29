@@ -9,4 +9,8 @@
     <string name="map">Карта</string>
     <string name="transport">Транспорт</string>
     <string name="tools">Настройки</string>
+
+    <string name="fr_next_stops">Ближайшие остановки:</string>
+    <string name="fr_map">Карта:</string>
+    <string name="fr_transport">Транспорт:</string>
 </resources>
