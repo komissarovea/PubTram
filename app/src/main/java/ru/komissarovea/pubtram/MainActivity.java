@@ -3,16 +3,24 @@ package ru.komissarovea.pubtram;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
-import android.widget.Toast;
+
+import ru.komissarovea.pubtram.fragments.MapFragment;
+import ru.komissarovea.pubtram.fragments.NextStopsFragment;
+import ru.komissarovea.pubtram.fragments.SettingsFragment;
+import ru.komissarovea.pubtram.fragments.TransportFragment;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener{
+
+    private DrawerLayout drawer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,7 +30,7 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
@@ -40,23 +48,43 @@ public class MainActivity extends AppCompatActivity
      */
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        CharSequence itemTitle = item.getTitle().toString();
-        Toast toast = Toast.makeText(this, itemTitle, Toast.LENGTH_SHORT);
-        toast.show();
-        // Handle navigation view item clicks here.
-        int id = item.getItemId();
-
-        if (id == R.id.nav_next_stops) {
-            // Handle the action
-        } else if (id == R.id.nav_map) {
-
-        } else if (id == R.id.nav_transport) {
-
-        } else if (id == R.id.nav_manage) {
-
+//        CharSequence itemTitle = item.getTitle().toString();
+//        Toast toast = Toast.makeText(this, itemTitle, Toast.LENGTH_SHORT);
+//        toast.show();
+        Fragment fragment = null;
+        Class fragmentClass;
+        switch(item.getItemId()) {
+            case R.id.nav_next_stops:
+                fragmentClass = NextStopsFragment.class;
+                break;
+            case R.id.nav_map:
+                fragmentClass = MapFragment.class;
+                break;
+            case R.id.nav_transport:
+                fragmentClass = TransportFragment.class;
+                break;
+            case R.id.nav_manage:
+                fragmentClass = SettingsFragment.class;
+                break;
+            default:
+                fragmentClass = NextStopsFragment.class;
         }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        try {
+            fragment = (Fragment) fragmentClass.newInstance();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        // Insert the fragment by replacing any existing fragment
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction().replace(R.id.flContent, fragment).commit();
+
+        // Highlight the selected item has been done by NavigationView
+        //item.setChecked(true);
+        // Set action bar title
+        setTitle(item.getTitle());
+
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
