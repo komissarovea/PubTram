@@ -43,6 +43,19 @@ public class MainActivity extends AppCompatActivity
         CharSequence itemTitle = item.getTitle().toString();
         Toast toast = Toast.makeText(this, itemTitle, Toast.LENGTH_SHORT);
         toast.show();
+        // Handle navigation view item clicks here.
+        int id = item.getItemId();
+
+        if (id == R.id.nav_next_stops) {
+            // Handle the action
+        } else if (id == R.id.nav_map) {
+
+        } else if (id == R.id.nav_transport) {
+
+        } else if (id == R.id.nav_manage) {
+
+        }
+
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
