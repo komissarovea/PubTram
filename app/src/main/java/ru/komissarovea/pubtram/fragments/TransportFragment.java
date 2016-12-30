@@ -6,25 +6,43 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
+
+import java.util.ArrayList;
 
 import ru.komissarovea.pubtram.R;
+import ru.komissarovea.pubtram.adapters.TransportAdapter;
+import ru.komissarovea.pubtram.data.Transport;
+import ru.komissarovea.pubtram.data.UrlTask;
+import ru.komissarovea.pubtram.data.WebHelper;
 
-/**
- * A simple {@link Fragment} subclass.
- */
-public class TransportFragment extends Fragment {
+public class TransportFragment extends Fragment implements UrlTask.OnRequestComplete{
 
-
-    public TransportFragment() {
-        // Required empty public constructor
-    }
-
+    private ListView listView;
+    private ArrayList<Transport> tlist;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_transport, container, false);
+        String url = WebHelper.getUrl(14937);
+        UrlTask task = new UrlTask(null, this);
+        task.execute(url);
+
+        View rootView = inflater.inflate(R.layout.fragment_transport,
+                container, false);
+        listView = (ListView) rootView.findViewById(R.id.listView);
+
+
+        return rootView;
     }
 
+    @Override
+    public void onRequestComplete(ArrayList<Transport> list) {
+        tlist = list;
+
+        TransportAdapter adapter = new TransportAdapter(getActivity(),
+                tlist);
+        listView.setAdapter(adapter);
+        listView.invalidate();
+    }
 }
