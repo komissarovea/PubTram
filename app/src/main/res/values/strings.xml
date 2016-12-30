@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">PubTram</string>
+    <string name="app_name">PubTram2</string>
     <string name="logo">logo</string>
     <string name="load_hint">Идёт загрузка…</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>

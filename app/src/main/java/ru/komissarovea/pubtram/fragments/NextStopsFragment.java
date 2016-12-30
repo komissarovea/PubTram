@@ -2,7 +2,6 @@ package ru.komissarovea.pubtram.fragments;
 
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,24 +26,22 @@ public class NextStopsFragment extends Fragment implements AdapterView.OnItemCli
     private ListView listView;
     private ArrayList<Stop> nextStops;
 
-    public NextStopsFragment() {
-        // Required empty public constructor
-    }
-
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        activity = (MainActivity) getActivity();
-    }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        activity = (MainActivity) getActivity();
+
         View rootView = inflater.inflate(R.layout.fragment_next_stops,
                 container, false);
         listView = (ListView) rootView.findViewById(R.id.listView);
         listView.setOnItemClickListener(this);
 
+        refreshStopsList();
+
+        return rootView;
+    }
+
+    private void refreshStopsList() {
         nextStops = new ArrayList<>();//StopsHelper.getNextStops(null, 500);
         ArrayList<Stop> actualStops = StopsHelper.getActualStops();
 
@@ -56,8 +53,6 @@ public class NextStopsFragment extends Fragment implements AdapterView.OnItemCli
         StopAdapter adapter = new StopAdapter(activity, nextStops);
         listView.setAdapter(adapter);
         listView.invalidate();
-
-        return rootView;
     }
 
     /**
