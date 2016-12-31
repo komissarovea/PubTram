@@ -1,12 +1,14 @@
 package ru.komissarovea.pubtram.fragments;
 
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 
 import java.util.ArrayList;
 
@@ -24,8 +26,11 @@ public class TransportFragment extends Fragment implements UrlTask.OnRequestComp
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        Activity activity = getActivity();
+        ProgressBar mProgressBar = (ProgressBar) activity.findViewById(R.id.progressBar);
+
         String url = WebHelper.getUrl(14937);
-        UrlTask task = new UrlTask(null, this);
+        UrlTask task = new UrlTask(mProgressBar, this);
         task.execute(url);
 
         View rootView = inflater.inflate(R.layout.fragment_transport,

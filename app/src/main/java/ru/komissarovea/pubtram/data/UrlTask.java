@@ -38,7 +38,8 @@ public class UrlTask extends AsyncTask<String, Void, ArrayList<Transport>> {
 
     @Override
     protected ArrayList<Transport> doInBackground(String... params) {
-        return getListByHtmlCleaner(params[0]);
+        return getListByJsoup(params[0]);
+        //return getListByHtmlCleaner(params[0]);
     }
 
     private ArrayList<Transport> getListByJsoup(String url) {
@@ -114,12 +115,12 @@ public class UrlTask extends AsyncTask<String, Void, ArrayList<Transport>> {
     }
 
     @Override
-    protected void onPostExecute(ArrayList<Transport> s) {
-        super.onPostExecute(s);
+    protected void onPostExecute(ArrayList<Transport> list) {
+        super.onPostExecute(list);
         if (mProgressBar != null)
             mProgressBar.setVisibility(View.GONE);
-        if (!s.isEmpty() && mRequestComplete != null) {
-            mRequestComplete.onRequestComplete(s);
+        if (!list.isEmpty() && mRequestComplete != null) {
+            mRequestComplete.onRequestComplete(list);
         }
     }
 }
