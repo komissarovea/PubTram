@@ -2,6 +2,7 @@ package ru.komissarovea.pubtram.fragments;
 
 
 import android.app.Activity;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -22,6 +23,7 @@ public class TransportFragment extends Fragment implements UrlTask.OnRequestComp
 
     private ListView listView;
     private int stopId;
+    private UrlTask task;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -29,15 +31,16 @@ public class TransportFragment extends Fragment implements UrlTask.OnRequestComp
         View rootView = inflater.inflate(R.layout.fragment_transport,
                 container, false);
         listView = (ListView) rootView.findViewById(R.id.listView);
-        if (stopId > 0) {
-            Activity activity = getActivity();
-            ProgressBar mProgressBar = (ProgressBar) activity.findViewById(R.id.progressBar);
 
-            String url = WebHelper.getUrl(stopId);
-            UrlTask task = new UrlTask(mProgressBar, this);
-            task.execute(url);
-        }
+        updateList();
         return rootView;
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        if (task != null && task.getStatus() == AsyncTask.Status.RUNNING)
+            task.cancel(true);
     }
 
     @Override
@@ -50,5 +53,18 @@ public class TransportFragment extends Fragment implements UrlTask.OnRequestComp
 
     public void setStopId(int value) {
         stopId = value;
+    }
+
+    private void updateList() {
+        if (task != null && task.getStatus() == AsyncTask.Status.RUNNING)
+            return;
+        if (stopId > 0 ) {
+            Activity activity = getActivity();
+            ProgressBar mProgressBar = (ProgressBar) activity.findViewById(R.id.progressBar);
+
+            String url = WebHelper.getUrl(stopId);
+            task = new UrlTask(mProgressBar, this);
+            task.execute(url);
+        }
     }
 }

@@ -1,16 +1,16 @@
 <resources>
-    <string name="app_name">PubTram2</string>
-    <string name="logo">logo</string>
+    <string name="app_name">PubTram</string>
+    <string name="logo">Логотип</string>
     <string name="load_hint">Идёт загрузка…</string>
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="action_settings">Settings</string>
+    <string name="navigation_drawer_open">Открыть меню</string>
+    <string name="navigation_drawer_close">Закрыть меню</string>
     <string name="next_stops">Ближайшие остановки</string>
     <string name="map">Карта</string>
     <string name="transport">Транспорт</string>
     <string name="tools">Настройки</string>
-    <string name="connected_toast">Location services connected</string>
-    <string name="disconnected_toast">Location services disconnected</string>
+    <string name="connected_toast">Местоположение определено</string>
+    <string name="disconnected_toast">Местоположение не может быть определено</string>
+    <string name="map_error">Карта не может быть загружена</string>
     <string name="fr_next_stops">Ближайшие остановки:</string>
     <string name="fr_map">Карта:</string>
     <string name="fr_transport">Транспорт:</string>

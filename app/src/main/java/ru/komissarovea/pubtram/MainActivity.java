@@ -1,7 +1,6 @@
 package ru.komissarovea.pubtram;
 
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -39,12 +38,7 @@ public class MainActivity extends AppCompatActivity
         init();
     }
 
-    @Override
-    protected void onPause() {
-        super.onPause();
-        if (task != null && task.getStatus() == AsyncTask.Status.RUNNING)
-            task.cancel(true);
-    }
+
 
     @Override
     public void onBackPressed() {
@@ -70,9 +64,6 @@ public class MainActivity extends AppCompatActivity
         } else {
             setFragment(item.getItemId());
         }
-        //CharSequence itemTitle = item.getTitle().toString();
-        //Toast toast = Toast.makeText(this, itemTitle, Toast.LENGTH_SHORT);
-        //toast.show();
 
         // Highlight the selected item has been done by NavigationView
         //item.setChecked(true);

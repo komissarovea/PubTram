@@ -202,7 +202,6 @@ public class NextStopsFragment extends Fragment implements LocationListener,
     }
 
     public void updateLocation() {
-
         nextStops = StopsHelper.getNextStops(currentLocation, 500);
 
         if (nextStops != null && nextStops.size() > 0) {
