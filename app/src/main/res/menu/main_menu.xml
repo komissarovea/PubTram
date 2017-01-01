@@ -5,19 +5,23 @@
         <item
             android:id="@+id/nav_next_stops"
             android:icon="@drawable/ic_menu_stop"
-            android:title="@string/next_stops" />
+            android:title="@string/next_stops"
+            android:checkable="false"/>
         <item
             android:id="@+id/nav_map"
             android:icon="@drawable/ic_menu_map"
-            android:title="@string/map" />
+            android:title="@string/map"
+            android:checkable="false"/>
         <item
             android:id="@+id/nav_transport"
             android:icon="@drawable/ic_menu_transport"
-            android:title="@string/transport" />
+            android:title="@string/transport"
+            android:checkable="false"/>
         <item
             android:id="@+id/nav_manage"
             android:icon="@drawable/ic_menu_manage"
-            android:title="@string/tools" />
+            android:title="@string/tools"
+            android:checkable="false"/>
     </group>
 
 </menu>

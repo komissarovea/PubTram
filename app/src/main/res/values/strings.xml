@@ -9,7 +9,8 @@
     <string name="map">Карта</string>
     <string name="transport">Транспорт</string>
     <string name="tools">Настройки</string>
-
+    <string name="connected_toast">Location services connected</string>
+    <string name="disconnected_toast">Location services disconnected</string>
     <string name="fr_next_stops">Ближайшие остановки:</string>
     <string name="fr_map">Карта:</string>
     <string name="fr_transport">Транспорт:</string>

@@ -21,33 +21,34 @@ import ru.komissarovea.pubtram.data.WebHelper;
 public class TransportFragment extends Fragment implements UrlTask.OnRequestComplete{
 
     private ListView listView;
-    private ArrayList<Transport> tlist;
+    private int stopId;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        Activity activity = getActivity();
-        ProgressBar mProgressBar = (ProgressBar) activity.findViewById(R.id.progressBar);
-
-        String url = WebHelper.getUrl(14937);
-        UrlTask task = new UrlTask(mProgressBar, this);
-        task.execute(url);
-
         View rootView = inflater.inflate(R.layout.fragment_transport,
                 container, false);
         listView = (ListView) rootView.findViewById(R.id.listView);
+        if (stopId > 0) {
+            Activity activity = getActivity();
+            ProgressBar mProgressBar = (ProgressBar) activity.findViewById(R.id.progressBar);
 
-
+            String url = WebHelper.getUrl(stopId);
+            UrlTask task = new UrlTask(mProgressBar, this);
+            task.execute(url);
+        }
         return rootView;
     }
 
     @Override
     public void onRequestComplete(ArrayList<Transport> list) {
-        tlist = list;
-
         TransportAdapter adapter = new TransportAdapter(getActivity(),
-                tlist);
+                list);
         listView.setAdapter(adapter);
         listView.invalidate();
+    }
+
+    public void setStopId(int value) {
+        stopId = value;
     }
 }
